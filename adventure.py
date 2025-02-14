@@ -60,12 +60,19 @@ def check_for_treasure(has_treasure):
     else:
         print("The monster did not have the treasure. You continue your journey.")
 
+def acquire_item(inventory, item):
+    """Adds an item to the inventory and returns the updated inventory."""
+    if item:
+        inventory.append(item)
+        print(f"You acquired a {item}!")
+    return inventory
+
 def enter_dungeon(player_health, inventory, dungeon_rooms):
     """Handles the dungeon exploration and encounters."""
     for room in dungeon_rooms:
         print(room[0])
         if room[1]:
-            inventory.append(room[1])
+            inventory = acquire_item(inventory, room[1])
             print(f"You acquired a {room[1]}!")
         if room[2] != "none":
             print(f"You encounter a {room[2]}!")
