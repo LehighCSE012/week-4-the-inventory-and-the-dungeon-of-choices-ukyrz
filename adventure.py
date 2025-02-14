@@ -80,9 +80,11 @@ def enter_dungeon(player_health, inventory, dungeon_rooms):
     """Handles the dungeon exploration and encounters."""
     for room in dungeon_rooms:
         print(room[0])
-        if room[1]:
+
+        if room[1] and room[1] not in inventory:
             inventory = acquire_item(inventory, room[1])
-            print(f"You acquired a {room[1]}!")
+            print(f"You found a {room[1]} in the room.")  
+
         if room[2] != "none":
             print(f"You encounter a {room[2]}!")
             prompts = {"puzzle": "Do you want to 'solve' or 'skip' the challenge? ",
@@ -92,7 +94,6 @@ def enter_dungeon(player_health, inventory, dungeon_rooms):
             if choice in ["solve", "disarm"]:
                 success = random.choice([True, False])
 
-                # Apply health change always
                 player_health = max(player_health + room[3][2], 0)
                 if player_health == 0:
                     print("You are barely alive!")
