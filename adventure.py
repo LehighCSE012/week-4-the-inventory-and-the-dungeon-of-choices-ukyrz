@@ -68,9 +68,11 @@ def acquire_item(inventory, item):
     return inventory
 
 def display_inventory(inventory):
-    """Displays the player's inventory."""
+    """Displays the player's inventory with numbered items."""
     if inventory:
-        print("Your inventory:", ", ".join(inventory))
+        print("Your inventory:")
+        for i, item in enumerate(inventory, start=1):
+            print(f"{i}. {item}")
     else:
         print("Your inventory is empty.")
 
