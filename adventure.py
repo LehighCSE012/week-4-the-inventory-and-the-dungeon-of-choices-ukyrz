@@ -67,6 +67,13 @@ def acquire_item(inventory, item):
         print(f"You acquired a {item}!")
     return inventory
 
+def display_inventory(inventory):
+    """Displays the player's inventory."""
+    if inventory:
+        print("Your inventory:", ", ".join(inventory))
+    else:
+        print("Your inventory is empty.")
+
 def enter_dungeon(player_health, inventory, dungeon_rooms):
     """Handles the dungeon exploration and encounters."""
     for room in dungeon_rooms:
@@ -93,7 +100,7 @@ def enter_dungeon(player_health, inventory, dungeon_rooms):
                 else:
                     print(room[3][1])
 
-        print("Your current inventory:", inventory)
+        display_inventory(inventory)
     return player_health, inventory
 
 def main():
